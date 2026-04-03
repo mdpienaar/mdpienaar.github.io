@@ -1,125 +1,857 @@
 <!DOCTYPE html>
-<html>
-  <head>
-      <meta charset="utf-8">
-      <meta content="width=device-width, initial-scale=1">
-      <title>Home</title>
-      <link href="style.css" type="text/css" rel="stylesheet">
-      
-<!--Favicons generated at https://realfavicongenerator.net/favicon_result?file_id=p1d0fhe0ea1tv3lkn18fh13bh1vqn6#.XDDr02QzauU-->
-      <!--<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">-->
-<!--end of favicon code-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Marquard Dirk Pienaar — Author, Philosopher, Founder of Africahead. Creator of Intequinism." />
+  <title>Marquard Dirk Pienaar</title>
 
-<!--ShareCode-->
-      <meta name="twitter:card" content="summary_large_image">
-      <meta property="og:title" content="Africahead">
-      <meta property="og:description" content="Business and politics combined.">
-      <meta property="og:image" content="https://www.africahead.co.za/indexfiles/TwitterBannerLogo.png">
-      <meta property="og:url" content="https://mdpienaar.github.io">
-<!---->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600&family=Source+Sans+3:wght@300;400&display=swap" rel="stylesheet" />
 
-  </head>
-    <body>
-      <header>
-        
-        <div class="logo-img" style="float:left">
-          <a href="https://www.africahead.co.za">
-              <img src="img/logo.png" alt="Africahead logo" height="50" width="50">
-          </a>
+  <style>
+    /* =========================================================
+       CSS VARIABLES  — edit colours here to restyle the page
+    ========================================================= */
+    :root {
+      --bg:           #faf8f3;       /* warm off-white */
+      --surface:      #f2efe7;
+      --border:       #d9d2c0;
+      --ink:          #2c2416;       /* deep brown-black */
+      --ink-muted:    #7a6f5b;
+      --accent:       #8b4513;       /* warm sienna / earth */
+      --accent2:      #2e5540;       /* forest green */
+      --gold:         #b8860b;
+      --font-title:   'Cinzel', 'Palatino Linotype', serif;
+      --font-body:    'EB Garamond', Georgia, serif;
+      --font-ui:      'Source Sans 3', sans-serif;
+    }
+
+    /* =========================================================
+       RESET & BASE
+    ========================================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1.08rem;
+      line-height: 1.85;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--accent2); }
+    img { max-width: 100%; height: auto; }
+
+    /* =========================================================
+       LAYOUT
+    ========================================================= */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 1.8rem;
+    }
+
+    section {
+      padding: 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-of-type { border-bottom: none; }
+
+    /* =========================================================
+       DECORATIVE ORNAMENT
+    ========================================================= */
+    .ornament {
+      text-align: center;
+      color: var(--gold);
+      letter-spacing: 0.4em;
+      font-size: 0.85rem;
+      margin: 1.2rem 0;
+      user-select: none;
+    }
+
+    /* =========================================================
+       HEADINGS
+    ========================================================= */
+    h1 {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 7vw, 3.6rem);
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    h2 {
+      font-family: var(--font-title);
+      font-size: clamp(1.3rem, 4vw, 1.9rem);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+
+    h3 {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    p { margin-bottom: 1rem; max-width: 68ch; }
+    p:last-child { margin-bottom: 0; }
+    strong { font-weight: 500; }
+
+    /* =========================================================
+       HEADER / HERO
+    ========================================================= */
+    header {
+      background: var(--ink);
+      color: #f0ead8;
+      padding: 5rem 0 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    header .container { position: relative; z-index: 1; }
+
+    .header-rule {
+      width: 60px;
+      border: none;
+      border-top: 1px solid var(--gold);
+      margin: 1.4rem auto;
+    }
+
+    header h1 { color: #f0ead8; }
+
+    .header-sub {
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: #b0a882;
+      margin-top: 0.5rem;
+    }
+
+    .header-tagline {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #c8be9e;
+      margin-top: 1rem;
+      max-width: 52ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* =========================================================
+       NAV
+    ========================================================= */
+    nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li a {
+      display: block;
+      padding: 0.85rem 1.1rem;
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      transition: color 0.2s;
+    }
+
+    nav ul li a:hover { color: var(--accent); text-decoration: none; }
+
+    /* =========================================================
+       BIO GRID
+    ========================================================= */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .bio-aside {
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      background: var(--surface);
+      text-align: center;
+    }
+
+    .bio-aside .initials {
+      font-family: var(--font-title);
+      font-size: 3.5rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .bio-aside p {
+      font-family: var(--font-ui);
+      font-size: 0.8rem;
+      color: var(--ink-muted);
+      margin: 0;
+      max-width: 100%;
+    }
+
+    .bio-aside .role {
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      display: block;
+      margin-top: 0.4rem;
+    }
+
+    /* =========================================================
+       PULL QUOTE
+    ========================================================= */
+    .pull-quote {
+      border-left: 3px solid var(--gold);
+      margin: 2rem 0;
+      padding: 0.8rem 1.5rem;
+      background: var(--surface);
+      font-style: italic;
+      font-size: 1.12rem;
+      color: var(--ink);
+    }
+
+    .pull-quote cite {
+      display: block;
+      margin-top: 0.5rem;
+      font-style: normal;
+      font-family: var(--font-ui);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+    }
+
+    /* =========================================================
+       CONCEPT CARDS
+    ========================================================= */
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .concept-card {
+      border: 1px solid var(--border);
+      padding: 1.4rem;
+      background: var(--surface);
+    }
+
+    .concept-card h4 {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .concept-card p {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin: 0;
+      max-width: 100%;
+    }
+
+    /* =========================================================
+       BOOKS LIST
+    ========================================================= */
+    .books-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 2rem;
+    }
+
+    .books-list li {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.4rem;
+      align-items: start;
+      padding: 1.6rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .books-list li:last-child { border-bottom: none; }
+
+    .book-num {
+      font-family: var(--font-title);
+      font-size: 1.4rem;
+      color: var(--gold);
+      opacity: 0.5;
+      min-width: 2rem;
+      line-height: 1;
+      padding-top: 0.2rem;
+    }
+
+    .book-title {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+
+    .book-desc {
+      font-family: var(--font-ui);
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin: 0.3rem 0 0.7rem;
+      max-width: 100%;
+    }
+
+    .book-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .book-link {
+      display: inline-block;
+      padding: 0.28em 0.9em;
+      border: 1px solid var(--border);
+      font-family: var(--font-ui);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .book-link:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+
+    .book-link.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .book-link.primary:hover { background: var(--accent2); border-color: var(--accent2); }
+
+    /* =========================================================
+       VENTURES GRID
+    ========================================================= */
+    .ventures-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .venture-card {
+      border: 1px solid var(--border);
+      padding: 1.4rem 1.6rem;
+      background: var(--surface);
+      transition: border-color 0.2s;
+    }
+
+    .venture-card:hover { border-color: var(--accent2); }
+
+    .venture-card h4 {
+      font-family: var(--font-title);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .venture-card p {
+      font-family: var(--font-ui);
+      font-size: 0.83rem;
+      color: var(--ink-muted);
+      margin-bottom: 0.8rem;
+      max-width: 100%;
+    }
+
+    .venture-card a {
+      font-family: var(--font-ui);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    /* =========================================================
+       CONTACT LIST
+    ========================================================= */
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1.5rem;
+    }
+
+    .contact-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 0.8rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-ui);
+      font-size: 0.92rem;
+    }
+
+    .contact-list li:last-child { border-bottom: none; }
+
+    .contact-label {
+      min-width: 90px;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+    footer {
+      background: var(--ink);
+      color: #7a6f5b;
+      padding: 2.5rem 0;
+      text-align: center;
+      font-family: var(--font-ui);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+    }
+
+    footer a { color: #7a6f5b; }
+    footer a:hover { color: #b0a882; text-decoration: none; }
+
+    footer .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+    @media (max-width: 640px) {
+      .bio-grid { grid-template-columns: 1fr; }
+      .bio-aside { display: none; }
+      nav ul li a { padding: 0.75rem 0.7rem; font-size: 0.68rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header>
+    <div class="container">
+      <div class="header-sub">Author &middot; Philosopher &middot; Entrepreneur</div>
+      <hr class="header-rule" />
+      <h1>Marquard Dirk Pienaar</h1>
+      <hr class="header-rule" />
+      <p class="header-tagline">
+        Creator of Intequinism &mdash; a philosophy placing Truth and Love at the foundation of economics and society.
+      </p>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#intequinism">Intequinism</a></li>
+      <li><a href="#books">Books</a></li>
+      <li><a href="#ventures">Ventures</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://africahead.github.io" target="_blank" rel="noopener">Africahead &#x2197;</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section id="about">
+    <div class="container">
+      <h3>About</h3>
+      <h2>Marquard Dirk Pienaar</h2>
+      <div class="bio-grid">
+
+        <aside class="bio-aside">
+          <div class="initials">MDP</div>
+          <strong>Marquard Dirk Pienaar</strong>
+          <span class="role">South Africa</span>
+          <hr style="border:none; border-top:1px solid var(--border); margin:0.9rem 0;" />
+          <p>Founder &amp; owner of Africahead &middot; Moiom CC</p>
+          <p style="margin-top:0.5rem;">Reg. no: 1999/054573/23</p>
+        </aside>
+
+        <div>
+          <p>
+            Marquard Dirk Pienaar is a South African author, philosopher, and entrepreneur, best known
+            for developing <strong>Intequinism</strong> &mdash; an original philosophy that challenges the Labour Theory
+            of Capital and proposes a new economic framework centred on the ideas of Truth and Love.
+          </p>
+          <p>
+            His work began with the coining of the word <strong>intequity</strong> on 7 October 2009, describing
+            the capital of ideas as distinct from, yet inseparable from, labour. Since then he has published
+            multiple books and developed a body of practical work connecting philosophy with new-era economics,
+            blockchain-based brand currencies, and a new kind of Internet community.
+          </p>
+          <p>
+            He is the founder and owner of <strong>Africahead</strong>, which operates as Moiom Close Corporation
+            (Reg. no: 1999/054573/23), active in South Africa since 1999.
+            Africahead combines business and political philosophy, seeking not maximum profit per individual
+            but <em>maximum capital value</em> &mdash; built on brands, ideas, and community.
+          </p>
+          <p>
+            His academic work includes a paper published at North-West University, and he has built a body
+            of applied work through IPPAEX, Kaeuoi, and related ventures.
+            Author pages:
+            <a href="https://www.amazon.com/Marquard-Dirk-Pienaar/e/B00MDFWQ34" target="_blank" rel="noopener">Amazon</a>
+            &middot;
+            <a href="https://books.apple.com/us/author/marquard-dirk-pienaar/id910108241" target="_blank" rel="noopener">Apple Books</a>.
+          </p>
         </div>
-        
-        <nav>
-          <ul>
-            <li><a href="https://www.africahead.co.za" target="_blank">Africahead</a></li>
-            <li><a href="https://www.fonetones.co.za" target="_blank">fonetones</a></li>
-            <li><a href="https://kaeuoi.github.io" target="_blank">Kaeuoi</a></li>
-            <li><a href="https://www.africahead.co.za/Africahead/IppartsExchange.html" target="_blank">IPPAEX</a></li>
-                <li><a href="https://www.africahead.co.za/Africahead/Moyom.html" target="_blank">Moyom</a></li>
-                <li><a href="https://www.africahead.co.za/Africahead/RaisingCapital.html" target="_blank">AFA</a></li>
-                <li><a href="https://www.dividedparty.org" target="_blank">DiP</a></li>
-          </ul>
-        </nav>
-    </header>
-    <main>
-      <section>
-      <p>HELLO THERE!
-      <br>Contact me at the contact details available on
-    <a href="https://www.africahead.co.za/Africahead/Contact.html">Africahead's website</a> to use this
-    simple website layout and build on it, with direct coding in an html editor.</p>
-      
-      <p>It has all the basics in just a few lines. Share a page and display a banner of the page on most social media
-      sites.</p>
-      
-      <p><img src="indexfiles/aerial-view4.png" alt="Africahead logo image" height="253" width="240"></p>
-      
-      <br>
-      
-                  <!-- AddToAny BEGIN -->
-<div class="a2a_kit a2a_kit_size_32 a2a_default_style">
-<a class="a2a_dd" href="https://www.addtoany.com/share">Sharing</a>
-</div>
-<script async src="https://static.addtoany.com/menu/page.js"></script>
-<!-- AddToAny END -->
-            
-                    </section>
-                    <aside>
-                        <a class="twitter-timeline" href="https://twitter.com/mdpienaar?ref_src=twsrc%5Etfw"
-                        height="250px" overflow="scroll">Tweets
-                        by mdpienaar</a> <script async src="https://platform.twitter.com/widgets.js" 
-                        charset="utf-8"></script>
-                    </aside>
-                    
-                    <aside>
-          <a class="twitter-timeline" 
-        href="https://twitter.com/mdpienaar/timelines/1109353996496576512?ref_src=twsrc%5Etfw"
-        height="250"
-       overflow="scroll">#Intequinism - Curated tweets by mdpienaar</a> <script async 
-        src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </aside>
-                    
-                    <br>
-                    
-                    <aside>
-          <a class="twitter-timeline" href="https://twitter.com/mdpienaar/timelines/1156080255230234625?ref_src=twsrc%5Etfw"
-        height="250" overflow="scroll">$IPPAEX
-        - Curated tweets by mdpienaar</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-      </aside>
-                    
-                    <aside>
-          <a class="twitter-timeline"
-             href="https://twitter.com/mdpienaar/timelines/1157688562571259905?ref_src=twsrc%5Etfw" height="250"
-           overflow="scroll">$MYMuti
-           - Curated tweets by mdpienaar</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>  
-      </aside>
-      
-    </main>
-    
-    <footer>
-      
-      <div class="logo-img" style="float:left">
-          <a href="https://www.africahead.co.za">
-              <img src="img/logo.png" alt="Africahead logo" height="50" width="50">
-          </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INTEQUINISM
+  ============================================================ -->
+  <section id="intequinism">
+    <div class="container">
+      <h3>Philosophy</h3>
+      <h2>Intequinism</h2>
+
+      <div class="pull-quote">
+        The Labour Theory of Capital is false &mdash; ideas, not only labour, create capital. The word
+        <em>intequity</em> was formed to name this reality: the capital of ideas.
+        <cite>&mdash; Marquard Dirk Pienaar, first usage 7 October 2009</cite>
+      </div>
+
+      <p>
+        Intequinism is a philosophical and economic system that identifies Truth and Love as the two most
+        foundational ideas for any sustainable, creative society. It rationalises the conclusion reached
+        independently by Bertrand Russell &mdash; that Truth and Love are the most important ideas to respect &mdash;
+        by grounding it in the concept of <strong>intequity</strong> (intellectual property parts as capital).
+      </p>
+      <p>
+        Where conventional economics follows the Labour Theory of Capital (rooted in Old Testament
+        methodology), Intequinism proposes a new-capitalist framework in which ideas are formally
+        recognised and rewarded alongside labour. Choosing idealism over materialism &mdash; Truth and Love
+        over deceit and exploitation &mdash; is shown to produce more creative, equitable, and lasting economies.
+      </p>
+      <p>
+        The philosophy also diagnoses <strong>Caiaphas Syndrome</strong>: the utilitarian conviction
+        that sacrificing the honest individual for the group's benefit is justified, which leads to
+        corruption, stagnation of ideas, and eventual societal breakdown.
+      </p>
+      <p>
+        Intequinism is applied in practice through
+        <a href="https://africahead.github.io/Africahead/IppartsExchange.html" target="_blank" rel="noopener">Ipparts Exchange (IPPAEX)</a>
+        and the Kaeuoi community social network.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h4>Intequity</h4>
+          <p>The capital of ideas &mdash; intellectual property parts as a recognised and measurable form of wealth, separate from and combined with labour.</p>
         </div>
-      
-        <nav>
-          <ul>
-              <li><a href="https://www.africahead.co.za" target="_blank">Africahead</a></li>
-            <li><a href="https://www.fonetones.co.za" target="_blank">fonetones</a></li>
-            <li><a href="https://kaeuoi.github.io" target="_blank">Kaeuoi</a></li>
-            <li><a href="https://www.africahead.co.za/Africahead/IppartsExchange.html" target="_blank">IPPAEX</a></li>
-                <li><a href="https://www.africahead.co.za/Africahead/Moyom.html" target="_blank">Moyom</a></li>
-                <li><a href="https://www.africahead.co.za/Africahead/RaisingCapital.html" target="_blank">AFA</a></li>
-                <li><a href="https://www.dividedparty.org" target="_blank">DiP</a></li>
-          </ul>
-        </nav>
-    </footer>
-    
-    </body>
-    </html>
+        <div class="concept-card">
+          <h4>Truth &amp; Love</h4>
+          <p>The two foundational ideas Intequinism holds as necessary for any creative, honest, and sustainable group or economy.</p>
+        </div>
+        <div class="concept-card">
+          <h4>Caiaphas Syndrome</h4>
+          <p>The pathology of sacrificing the honest individual for group gain &mdash; a root cause of corruption and intellectual stagnation.</p>
+        </div>
+        <div class="concept-card">
+          <h4>New Capitalism</h4>
+          <p>An economic system that rewards ideas and labour equitably, replacing the Labour Theory of Capital as the sole economic foundation.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:2rem;">
+        <a href="https://africahead.github.io/Africahead/Intequinism.html" target="_blank" rel="noopener">Read more about Intequinism on the Africahead website &#x2192;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BOOKS
+  ============================================================ -->
+  <section id="books">
+    <div class="container">
+      <h3>Publications</h3>
+      <h2>Books by Marquard Dirk Pienaar</h2>
+      <p>
+        Published under the names <strong>Marquard Dirk Pienaar</strong> and <strong>Marquard D Pienaar</strong>.
+        Available in digital format on Amazon Kindle and Apple Books; selected titles also in paperback.
+      </p>
+
+      <ul class="books-list">
+
+        <li>
+          <span class="book-num">I</span>
+          <div>
+            <div class="book-title">Intequinism</div>
+            <p class="book-desc">
+              The definitive explanation of Intequinism. Rationalises Bertrand Russell's conclusion that
+              Truth and Love are the most important ideas, in the context of intequity and sustainable
+              creative economies. Shows the negative influence of religions and utilitarian philosophy
+              on creativity and proposes a new economic system. Available as ebook and paperback.
+            </p>
+            <div class="book-links">
+              <a class="book-link primary" href="https://www.amazon.com/dp/B078C5RP21" target="_blank" rel="noopener">Amazon Kindle</a>
+              <a class="book-link primary" href="http://books.apple.com/us/book/id1317115984" target="_blank" rel="noopener">Apple Books</a>
+              <a class="book-link" href="https://www.amazon.com/dp/0994663129" target="_blank" rel="noopener">Paperback</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <span class="book-num">II</span>
+          <div>
+            <div class="book-title">Truth, Love and God's War</div>
+            <p class="book-desc">
+              Explores the philosophical and theological dimensions of Intequinism &mdash; examining the tension between Truth and Love on one side and idolatry, messianism, and apocalypticism on the other.
+            </p>
+            <div class="book-links">
+              <a class="book-link primary" href="https://www.amazon.com/dp/B0GJG214KC" target="_blank" rel="noopener">Amazon Kindle</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <span class="book-num">III</span>
+          <div>
+            <div class="book-title">Alterities</div>
+            <p class="book-desc">
+              An exploration of otherness and difference through the lens of Intequinism, examining how ideas of the "other" shape economics, philosophy, and human interaction.
+            </p>
+            <div class="book-links">
+              <a class="book-link primary" href="https://www.amazon.com/dp/B00L6LU64W" target="_blank" rel="noopener">Amazon Kindle</a>
+              <a class="book-link primary" href="http://books.apple.com/us/book/id958485763" target="_blank" rel="noopener">Apple Books</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <span class="book-num">IV</span>
+          <div>
+            <div class="book-title">Demarcation and Caiaphas Syndrome</div>
+            <p class="book-desc">
+              Examines the demarcation problem in philosophy alongside Caiaphas Syndrome &mdash; the utilitarian sacrifice of the honest individual &mdash; and its consequences for society and economics.
+            </p>
+            <div class="book-links">
+              <a class="book-link primary" href="https://www.amazon.com/dp/B00RXKXO80" target="_blank" rel="noopener">Amazon Kindle</a>
+              <a class="book-link primary" href="http://books.apple.com/us/book/id957698298" target="_blank" rel="noopener">Apple Books</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <span class="book-num">V</span>
+          <div>
+            <div class="book-title">Accounting of Ideas</div>
+            <p class="book-desc">
+              A practical and theoretical treatment of how ideas can and should be formally accounted for in business and economics &mdash; the foundation of Intequinism's applied methodology.
+            </p>
+            <div class="book-links">
+              <a class="book-link primary" href="https://www.amazon.com/dp/B00KHZ9CX4" target="_blank" rel="noopener">Amazon Kindle</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <span class="book-num">VI</span>
+          <div>
+            <div class="book-title">Management Accounting of Intellectual Creations</div>
+            <p class="book-desc">
+              Bridges Intequinism with practical management accounting &mdash; a methodology for accounting for intellectual creations in a business context.
+            </p>
+            <div class="book-links">
+              <a class="book-link primary" href="https://books.apple.com/us/author/marquard-dirk-pienaar/id910108241" target="_blank" rel="noopener">Apple Books</a>
+              <a class="book-link" href="https://africahead.github.io/Africahead/ManAccIntCr.html" target="_blank" rel="noopener">Read Online</a>
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <span class="book-num">VII</span>
+          <div>
+            <div class="book-title">A View of God to Consider: Critique of Richard Kearney's Anatheism</div>
+            <p class="book-desc">
+              Academic paper engaging Richard Kearney's anatheism from an Intequinist perspective, published through North-West University.
+            </p>
+            <div class="book-links">
+              <a class="book-link" href="http://dspace.nwu.ac.za/handle/10394/16013" target="_blank" rel="noopener">North-West University</a>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+
+      <div class="ornament">&#xb7; &#xb7; &#x2726; &#xb7; &#xb7;</div>
+
+      <p style="text-align:center;">
+        <a href="https://www.amazon.com/Marquard-Dirk-Pienaar/e/B00MDFWQ34" target="_blank" rel="noopener">All books on Amazon &#x2192;</a>
+        &nbsp;&nbsp;
+        <a href="https://books.apple.com/us/author/marquard-dirk-pienaar/id910108241" target="_blank" rel="noopener">All books on Apple Books &#x2192;</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       VENTURES
+  ============================================================ -->
+  <section id="ventures">
+    <div class="container">
+      <h3>Work &amp; Ventures</h3>
+      <h2>Africahead &amp; Projects</h2>
+      <p>
+        Marquard's philosophical work is put into practice through a family of ventures built on Intequinist principles &mdash; brand currencies, social networks, political philosophy, and music.
+      </p>
+
+      <div class="ventures-grid">
+
+        <div class="venture-card">
+          <h4>Africahead</h4>
+          <p>The founding venture &mdash; Moiom CC trading as Africahead since 1999. Holds 52% of four brand currencies and develops Intequinist business methodology.</p>
+          <a href="https://africahead.github.io" target="_blank" rel="noopener">africahead.github.io &#x2192;</a>
+        </div>
+
+        <div class="venture-card">
+          <h4>IPPAEX</h4>
+          <p>Ipparts Exchange &mdash; a new cryptocurrency exchange listing brand currencies (ipparts) and the Moyom (MYM) venture-capital utility token.</p>
+          <a href="https://africahead.github.io/Africahead/IppartsExchange.html" target="_blank" rel="noopener">Learn about IPPAEX &#x2192;</a>
+        </div>
+
+        <div class="venture-card">
+          <h4>Kaeuoi</h4>
+          <p>The future social network of IPPAEX &mdash; a community platform where brand-currency holders govern, vote, and share in advertising revenue.</p>
+          <a href="https://kaeuoi.github.io" target="_blank" rel="noopener">kaeuoi.github.io &#x2192;</a>
+        </div>
+
+        <div class="venture-card">
+          <h4>Moyom (MYM)</h4>
+          <p>The utility currency of the Kaeuoi community and IPPAEX ecosystem, used to buy and sell brand currencies and fund new ventures.</p>
+          <a href="https://africahead.github.io/Africahead/Moyom.html" target="_blank" rel="noopener">About Moyom &#x2192;</a>
+        </div>
+
+        <div class="venture-card">
+          <h4>Fonetones (FON)</h4>
+          <p>A brand selling ringtones to teach music &mdash; and the first community group on Kaeuoi. FON holders participate in brand governance.</p>
+          <a href="https://fonetones.github.io" target="_blank" rel="noopener">fonetones.github.io &#x2192;</a>
+        </div>
+
+        <div class="venture-card">
+          <h4>Federal Party SA</h4>
+          <p>Africahead combines business and politics. The Federal Party SA represents Intequinist political philosophy applied to South Africa.</p>
+          <a href="https://federalpartysa.github.io" target="_blank" rel="noopener">federalpartysa.github.io &#x2192;</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACT
+  ============================================================ -->
+  <section id="contact">
+    <div class="container">
+      <h3>Get in Touch</h3>
+      <h2>Contact</h2>
+      <p>Marquard welcomes contact from readers, investors, collaborators, and anyone interested in Intequinism or his ventures.</p>
+
+      <ul class="contact-list">
+        <li>
+          <span class="contact-label">Email</span>
+          <a href="mailto:africahead2@gmail.com">africahead2@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-label">Email</span>
+          <a href="mailto:mdpienaar@africahead.co.za">mdpienaar@africahead.co.za</a>
+        </li>
+        <li>
+          <span class="contact-label">Phone</span>
+          <span>+27 (0)82 447 7125</span>
+        </li>
+        <li>
+          <span class="contact-label">Telegram</span>
+          <a href="https://t.me/ippaex" target="_blank" rel="noopener">IPPAEX Telegram Group</a>
+        </li>
+        <li>
+          <span class="contact-label">WhatsApp</span>
+          <a href="https://chat.whatsapp.com/K5sjXzrA81lLDukeNe1CG7" target="_blank" rel="noopener">Join WhatsApp Group</a>
+        </li>
+        <li>
+          <span class="contact-label">Gitter</span>
+          <a href="https://gitter.im/Africahead/Lobby" target="_blank" rel="noopener">Africahead Lobby</a>
+        </li>
+        <li>
+          <span class="contact-label">Social</span>
+          <a href="https://africahead.github.io/Africahead/Promotions.html" target="_blank" rel="noopener">All social media profiles &#x2192;</a>
+        </li>
+        <li>
+          <span class="contact-label">Company</span>
+          <span>Moiom Close Corporation &mdash; Reg. no: 1999/054573/23, South Africa</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://africahead.github.io" target="_blank" rel="noopener">Africahead</a>
+        <a href="https://kaeuoi.github.io" target="_blank" rel="noopener">Kaeuoi</a>
+        <a href="https://africahead.github.io/Africahead/IppartsExchange.html" target="_blank" rel="noopener">IPPAEX</a>
+        <a href="https://fonetones.github.io" target="_blank" rel="noopener">Fonetones</a>
+        <a href="https://africahead.github.io/Africahead/Team.html" target="_blank" rel="noopener">Team</a>
+        <a href="https://africahead.github.io/Africahead/Contact.html" target="_blank" rel="noopener">Contact</a>
+      </div>
+      <div class="ornament" style="color:#4a4030; margin:0.5rem 0 0.8rem;">&#xb7; &#xb7; &#x2726; &#xb7; &#xb7;</div>
+      &copy; Marquard Dirk Pienaar &nbsp;&middot;&nbsp; Moiom CC &nbsp;&middot;&nbsp; All rights reserved
+    </div>
+  </footer>
+
+</body>
+</html>
